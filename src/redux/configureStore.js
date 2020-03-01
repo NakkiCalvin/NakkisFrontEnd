@@ -6,6 +6,7 @@ import rootReducer from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
 const createStoreWitMiddleware = applyMiddleware(sagaMiddleware)(createStore);
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default function configureStore() {
   const store = createStoreWitMiddleware(rootReducer);
