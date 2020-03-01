@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import freezeReducer from './freeze';
-import cartReducer from '../components/reducers/cartReducer';
+// import freezeReducer from './freeze';
+import cartReducer from './cart/cartReducer';
 
-export default combineReducers({ freezeReducer, cartReducer });
+export default combineReducers({ cartReducer });
