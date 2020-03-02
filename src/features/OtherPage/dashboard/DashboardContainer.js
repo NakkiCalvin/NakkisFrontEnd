@@ -1,13 +1,14 @@
-import { getAllProducts, applyFilters } from '../../redux/action/productAction'
-import { connect } from 'react-redux'
-import Dashboard from './Dashboard'
+import { connect } from 'react-redux';
+import { getAllProducts, applyFilters } from '../action/productAction';
+import Dashboard from './Dashboard';
+
 const mapStoreToProps = state => ({
   products: state.product.products,
-  loading:state.product.loading
-})
+  loading: state.product.loading,
+});
 const mapDispatchToProps = dispatch => ({
-  getAllProducts: ()=>dispatch(getAllProducts()),
-  applyFilters:(filter_string)=>dispatch(applyFilters(filter_string))
-})
+  getAllProducts: () => dispatch(getAllProducts()),
+  applyFilters: filter_string => dispatch(applyFilters(filter_string)),
+});
 
-export default connect(mapStoreToProps, mapDispatchToProps)(Dashboard)
+export default connect(mapStoreToProps, mapDispatchToProps)(Dashboard);

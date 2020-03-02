@@ -1,12 +1,12 @@
-import { connect } from 'react-redux'
-import CheckoutSuccess from './CheckoutSuccess'
-import { getPayment } from '../../redux/action/checkoutAction'
+import { connect } from 'react-redux';
+import CheckoutSuccess from './CheckoutSuccess';
+import { getPayment } from '../action/checkoutAction';
 
 const mapStoreToProps = state => ({
-  payment: state.checkout.payment
-})
+  payment: state.checkout.payment,
+});
 const mapDispatchToProps = dispatch => ({
-  getPayment: (paymentId, payerId) => dispatch(getPayment(paymentId, payerId))
-})
+  getPayment: (paymentId, payerId) => dispatch(getPayment(paymentId, payerId)),
+});
 
-export default connect(mapStoreToProps, mapDispatchToProps)(CheckoutSuccess)
+export default connect(mapStoreToProps, mapDispatchToProps)(CheckoutSuccess);
