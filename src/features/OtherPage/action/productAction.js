@@ -6,9 +6,10 @@ export const getAllProducts = () => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: '/products',
+    url: 'api/products',
   })
     .then(res => {
+      console.log('SUCCESS PRODUCTS', res);
       dispatch({
         type: GET_ALL_PRODUCTS_SUCCESS,
         payload: res,
@@ -30,7 +31,7 @@ export const getProduct = id => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: `/products/${id}`,
+    url: `api/products/${id}`,
   })
     .then(res => {
       dispatch({
@@ -54,7 +55,7 @@ export const getProductsByCategory = c => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: `/products?category=${c}`,
+    url: `api/products?category=${c}`,
   })
     .then(res => {
       dispatch({

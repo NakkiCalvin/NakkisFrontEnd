@@ -14,6 +14,7 @@ const serverCall = config => {
     const token = Auth.getToken();
     config.headers = {
       authorization: `Bearer ${token}`,
+      // authorization: token,
     };
   }
   console.log('Config', config);
@@ -51,23 +52,13 @@ export const login = (email, password) => {
   };
   return serverCall({
     method: 'POST',
-    url: '/Account/Login',
+    url: 'api/account/login',
     data: body,
   }).then(res => {
     Auth.setUserToken(res.data.user_token);
     return res;
   });
 };
-
-// export const logout = () => {
-//   return serverCall({
-//     method: 'GET',
-//     url: '/Account/LogOut',
-//   }).then(res => {
-//     console.log('remove localstorage', res);
-//     Auth.logout();
-//   });
-// };
 
 export const getPaypalToken = () => {
   return axios({

@@ -9,10 +9,9 @@ export const logoutUser = () => dispatch => {
 
   return serverCall({
     method: 'GET',
-    url: '/Account/LogOut',
+    url: 'api/account/logout',
   })
     .then(res => {
-      console.log('logOUT success', res);
       Auth.logout();
       dispatch({
         type: GET_LOGOUT_SUCCESS,
@@ -21,7 +20,6 @@ export const logoutUser = () => dispatch => {
       return res;
     })
     .catch(error => {
-      console.log('logOUT fali', error);
       dispatch({
         type: GET_LOGOUT_FAIL,
         payload: { error },

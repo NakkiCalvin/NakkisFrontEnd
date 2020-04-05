@@ -37,7 +37,7 @@ export default class Dashboard extends Component {
                   key={p.title}
                   className={`col-6 col-sm-4 col-md-4 col-lg-3 my-3 ${styles.product}`}
                   onClick={() =>
-                    this.props.history.push(`/product-overview/${p._id}`)
+                    this.props.history.push(`/product-overview/${p.id}`)
                   }
                 >
                   <Product
