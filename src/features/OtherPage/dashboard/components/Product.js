@@ -1,6 +1,6 @@
-import React from 'react'
-import { Card } from 'react-bootstrap'
-import styles from '../stylesheets/product.module.sass'
+import React from 'react';
+import { Card } from 'react-bootstrap';
+import styles from '../stylesheets/product.module.sass';
 
 export default function Product({ title, color, price, image }) {
   return (
@@ -13,14 +13,10 @@ export default function Product({ title, color, price, image }) {
       <Card.Body>
         <Card.Title className={styles.title}>{title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          <div className={styles.subtitle}>
-            {price}
-          </div>
+          <div className={styles.subtitle}>{price}</div>
         </Card.Subtitle>
-        <Card.Text className={styles.color}>
-          {color}
-        </Card.Text>
+        <Card.Text className={styles.color}>{color}</Card.Text>
       </Card.Body>
     </Card>
-  )
+  );
 }

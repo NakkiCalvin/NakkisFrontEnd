@@ -9,6 +9,7 @@ export const getVariantsByProductId = productId => dispatch => {
     url: `/variants?productId=${productId}`,
   })
     .then(res => {
+      console.log('variants', res);
       dispatch({
         type: GET_VARIANTS_QUERY_SUCCESS,
         payload: res,

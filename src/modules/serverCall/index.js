@@ -4,20 +4,23 @@ import Auth from '../Auth';
 import jumpTo from '../Navigation';
 import paypalConfig from '../../configs/paypalConfig';
 
-const URL = 'https://zack-ecommerce-nodejs.herokuapp.com';
-// const URL = 'http://localhost:4000'
+// const URL = 'https://zack-ecommerce-nodejs.herokuapp.com';
+const URL = 'https://localhost:44326';
 
 const serverCall = config => {
   // header authorization
   if (Auth.user_token) {
+    console.log('TOKEN EXSISTS', Auth.user_token);
     const token = Auth.getToken();
     config.headers = {
-      authorization: token,
+      authorization: `Bearer ${token}`,
     };
   }
+  console.log('Config', config);
   // interceptors handle network error
   axios.interceptors.response.use(
     response => {
+      console.log('response', response);
       return response;
     },
     function(error) {
@@ -32,6 +35,7 @@ const serverCall = config => {
         jumpTo('/login');
         throw error;
       }
+      console.log('error reject', error);
       return Promise.reject(error);
     }
   );
@@ -42,20 +46,28 @@ export default serverCall;
 
 export const login = (email, password) => {
   const body = {
-    credential: {
-      email: email,
-      password: password,
-    },
+    email,
+    password,
   };
   return serverCall({
     method: 'POST',
-    url: '/users/login',
+    url: '/Account/Login',
     data: body,
   }).then(res => {
     Auth.setUserToken(res.data.user_token);
     return res;
   });
 };
+
+// export const logout = () => {
+//   return serverCall({
+//     method: 'GET',
+//     url: '/Account/LogOut',
+//   }).then(res => {
+//     console.log('remove localstorage', res);
+//     Auth.logout();
+//   });
+// };
 
 export const getPaypalToken = () => {
   return axios({

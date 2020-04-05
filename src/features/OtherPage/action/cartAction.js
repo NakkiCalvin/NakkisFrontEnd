@@ -19,6 +19,7 @@ export const getCartByUserId = () => dispatch => {
     url: `users/${userId}/cart`,
   })
     .then(res => {
+      console.log('users/userId/cart', res);
       dispatch({
         type: GET_CART_BY_USERID_SUCCESS,
         payload: res,

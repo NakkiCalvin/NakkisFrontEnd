@@ -1,52 +1,61 @@
-import React, { Component } from 'react'
-import styles from './stylesheets/header.module.sass'
-import UserHeader from './components/UserHeader'
-import Menu from './components/Menu'
-import Search from './components/Search'
-import jumpTo,{go} from '../../modules/Navigation'
-import Auth from '../../modules/Auth'
-import device, { size } from '../../modules/mediaQuery'
-import MediaQuery from 'react-responsive'
+import React, { Component } from 'react';
+import MediaQuery from 'react-responsive';
+import styles from './stylesheets/header.module.sass';
+import UserHeader from './components/UserHeader';
+import Menu from './components/Menu';
+import Search from './components/Search';
+import jumpTo, { go } from '../../modules/Navigation';
+import Auth from '../../modules/Auth';
+import device, { size } from '../../modules/mediaQuery';
 
 export default class Header extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       input: '',
-      isToggle: false
-    }
+      isToggle: false,
+    };
   }
-  handleChange = (v) => {
+
+  handleChange = v => {
     this.setState({
-      input: v
-    })
-  }
-  handleSuggest = (v) => {
+      input: v,
+    });
+  };
+
+  handleSuggest = v => {
     this.setState({
-      input: v
-    })
-  }
+      input: v,
+    });
+  };
+
   handleToggle = () => {
     this.setState(prevState => {
       return {
-        isToggle: !prevState.isToggle
-      }
-    })
-  }
+        isToggle: !prevState.isToggle,
+      };
+    });
+  };
+
   closeToggle = () => {
     this.setState({
-      isToggle: false
-    })
-  }
+      isToggle: false,
+    });
+  };
+
   render() {
-    const { user_token,
+    const {
+      user_token,
       departments,
       search,
       getProductsByCategory,
-      getAllProducts } = this.props
-    let visibility = "hide"
+      getAllProducts,
+      logoutUser,
+    } = this.props;
+    console.log('user_token', user_token);
+    let visibility = 'hide';
     if (this.state.isToggle) {
-      visibility = "show"
+      visibility = 'show';
     }
     return (
       <div className={styles.outbox}>
@@ -54,21 +63,20 @@ export default class Header extends Component {
         <MediaQuery query={device.min.tablet}>
           {/* top user header */}
           <div className={styles.user_header}>
-            <UserHeader
-              user_token={user_token}
-            />
+            <UserHeader logoutUser={logoutUser} user_token={user_token} />
           </div>
           {/* menu header */}
           <div className={styles.content}>
             <div className={styles.left}>
               {/* logo */}
-              <div className={styles.logo}
+              <div
+                className={styles.logo}
                 onClick={() => {
-                  getAllProducts()
-                  jumpTo('/dashboard')
+                  getAllProducts();
+                  jumpTo('/dashboard');
                 }}
               >
-                Zack Market
+                Nakkis
               </div>
             </div>
             <div className={styles.mid}>
@@ -110,62 +118,72 @@ export default class Header extends Component {
                     input_value={this.state.input}
                     handleSuggest={this.handleSuggest}
                   />
-                  <div className={styles.side_title}>
-                    CATEGORY
-                  </div>
+                  <div className={styles.side_title}>CATEGORY</div>
                   <Menu
                     departments={departments}
                     getProductsByCategory={getProductsByCategory}
                     getAllProducts={getAllProducts}
                   />
-                  <div className={styles.side_title}>
-                    CART
-                  </div>
+                  <div className={styles.side_title}>CART</div>
                   <div
                     className={styles.side_content}
                     onClick={() => jumpTo('/bag')}
                   >
                     Shopping Bag
                   </div>
-                  <div className={styles.side_title}>
-                    USER
-                  </div>
-                  <div
-                    className={styles.side_content}
-                    onClick={() => jumpTo('/login')}
-                  >
-                    Login
-                  </div>
-                  <div
-                    className={styles.side_content}
-                    onClick={() => { Auth.logout(); go('/dashboard') }}
-                  >
-                    Logout
-                  </div>
+                  <div className={styles.side_title}>USER</div>
+                  {user_token && Object.keys(user_token).length > 0 ? (
+                    <div>
+                      <div
+                        className={styles.side_content}
+                        // onClick={() => jumpTo('/login')}
+                      >
+                        {`${user_token.user_name}`}
+                      </div>
+                      <div
+                        className={styles.side_content}
+                        onClick={() => {
+                          logoutUser();
+                          // Auth.logout();
+                          // go('/dashboard');
+                        }}
+                      >
+                        Logout
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className={styles.side_content}
+                      onClick={() => jumpTo('/login')}
+                    >
+                      Login
+                    </div>
+                  )}
                 </div>
               </div>
               {/* toggle icon */}
-              <div className={`${styles.toggle_icon} ${styles[`${visibility}`]}`} onClick={this.handleToggle}>
+              <div
+                className={`${styles.toggle_icon} ${styles[`${visibility}`]}`}
+                onClick={this.handleToggle}
+              >
                 <div className={styles.bar1}></div>
                 <div className={styles.bar2}></div>
                 <div className={styles.bar3}></div>
               </div>
             </div>
             {/* logo */}
-            <div className={styles.logo}
+            <div
+              className={styles.logo}
               onClick={() => {
-                getAllProducts()
-                jumpTo('/dashboard')
+                getAllProducts();
+                jumpTo('/dashboard');
               }}
             >
-              Zack Market
+              Nakkis
             </div>
           </div>
         </MediaQuery>
-      </div >
-    )
+      </div>
+    );
   }
 }
-
-
-

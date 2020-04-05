@@ -1,8 +1,8 @@
-export default (object,regex)=>{
+export default (object, regex) => {
   for (const key in object) {
     if (key.match(regex)) {
-      return key
+      return key;
     }
   }
-  return undefined
-}
+  return undefined;
+};

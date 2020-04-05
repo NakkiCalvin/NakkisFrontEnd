@@ -1,7 +1,6 @@
-import React from 'react'
-import styles from '../stylesheets/formInput.module.sass'
-import capitalizeString from '../utils/capitalizeString'
-
+import React from 'react';
+import styles from '../stylesheets/formInput.module.sass';
+import capitalizeString from '../utils/capitalizeString';
 
 export default function FormInput({
   name,
@@ -20,15 +19,13 @@ export default function FormInput({
           type={name.indexOf('assword') > -1 ? 'password' : 'text'}
           name={name}
           placeholder={name}
-          onBlur={(e) => onBlur(e, validate(validations, e.target.value))}
+          onBlur={e => onBlur(e, validate(validations, e.target.value))}
           onFocus={onFocus}
         />
       </div>
-      <div className={styles.errMsg}>
-        {errorMessage}
-      </div>
+      <div className={styles.errMsg}>{errorMessage}</div>
     </div>
-  )
+  );
 }
 
 const validate = (validations, val) => {
@@ -37,11 +34,10 @@ const validate = (validations, val) => {
       if (!validation.check(val)) {
         return {
           isValid: false,
-          errorMsg: validation.errMsg
-        }
+          errorMsg: validation.errMsg,
+        };
       }
     }
   }
-  return { isValid: true }
-}
-
+  return { isValid: true };
+};

@@ -6,6 +6,7 @@ import {
   getAllProducts,
   search,
 } from '../../features/OtherPage/action/productAction';
+import { logoutUser } from '../../features/OtherPage/action/logoutAction';
 
 const mapStoreToProps = state => ({
   user_token: state.token.user_token,
@@ -17,6 +18,7 @@ const mapDispatchToProps = dispatch => ({
   search: t => dispatch(search(t)),
   getProductsByCategory: c => dispatch(getProductsByCategory(c)),
   getAllProducts: () => dispatch(getAllProducts()),
+  logoutUser: () => dispatch(logoutUser()),
 });
 
 export default connect(mapStoreToProps, mapDispatchToProps)(Header);

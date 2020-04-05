@@ -73,7 +73,9 @@ export default class LoginSignin extends Component {
         .catch(error => {
           // console.log('loginsignin error')
           // console.log(error.response)
-          alert(error.response.data.error.message);
+          const { errors } = error.response.data;
+          const reson = errors.Password ? errors.Password.join() : null;
+          alert(reson);
           return error;
         });
     }

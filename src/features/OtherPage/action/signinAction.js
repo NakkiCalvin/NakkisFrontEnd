@@ -11,7 +11,7 @@ export const signin = (
   });
   return serverCall({
     method: 'POST',
-    url: '/users/signin',
+    url: '/Account/Register',
     data: {
       fullname,
       email,
