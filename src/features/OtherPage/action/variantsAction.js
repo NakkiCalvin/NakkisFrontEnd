@@ -6,7 +6,7 @@ export const getVariantsByProductId = productId => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: `/variants?productId=${productId}`,
+    url: `api/products/variants?productId=${productId}`,
   })
     .then(res => {
       console.log('variants', res);

@@ -31,7 +31,7 @@ export default class ProductOverview extends Component {
       size: variant.size,
       pic: variant.imagePath,
       selectedSize: '',
-      id: variant._id,
+      id: variant.id,
     });
   };
 

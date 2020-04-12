@@ -13,13 +13,13 @@ export default class Checkout extends Component {
     if (Object.keys(this.props.cart).length < 1) {
       this.props.getCartByUserId();
     } else {
-      this.props.getCheckoutUrl(this.props.cart._id);
+      this.props.getCheckoutUrl(this.props.cart.id);
     }
   }
 
   componentDidUpdate() {
     if (!this.props.url && Object.keys(this.props.cart).length > 1) {
-      this.props.getCheckoutUrl(this.props.cart._id);
+      this.props.getCheckoutUrl(this.props.cart.id);
     }
   }
 

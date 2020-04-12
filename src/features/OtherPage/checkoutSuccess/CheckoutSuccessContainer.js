@@ -6,7 +6,7 @@ const mapStoreToProps = state => ({
   payment: state.checkout.payment,
 });
 const mapDispatchToProps = dispatch => ({
-  getPayment: (paymentId, payerId) => dispatch(getPayment(paymentId, payerId)),
+  getPayment: orderId => dispatch(getPayment(orderId)),
 });
 
 export default connect(mapStoreToProps, mapDispatchToProps)(CheckoutSuccess);

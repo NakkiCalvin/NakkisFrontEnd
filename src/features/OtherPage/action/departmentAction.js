@@ -6,7 +6,7 @@ export const getDepartments = () => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: '/departments',
+    url: 'api/departments',
   })
     .then(res => {
       dispatch({

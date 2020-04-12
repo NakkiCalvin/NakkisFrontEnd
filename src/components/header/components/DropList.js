@@ -10,12 +10,12 @@ export default function DropList({ department, categories, clickCategory }) {
         categories.map(c => (
           <NavDropdown.Item
             onClick={() => {
-              clickCategory(c);
+              clickCategory(c.categoryName);
               jumpTo('/dashboard');
             }}
-            key={c}
+            key={c.categoryName}
           >
-            {c}
+            {c.categoryName}
           </NavDropdown.Item>
         ))}
     </NavDropdown>

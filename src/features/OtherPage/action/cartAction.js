@@ -16,7 +16,7 @@ export const getCartByUserId = () => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: `users/${userId}/cart`,
+    url: `api/account/${userId}/cart`,
   })
     .then(res => {
       console.log('users/userId/cart', res);
@@ -42,7 +42,7 @@ export const postCart = (productId, increase, decrease) => dispatch => {
   });
   return serverCall({
     method: 'POST',
-    url: `users/${userId}/cart`,
+    url: `api/account/${userId}/cart`,
     data: {
       userId,
       productId,

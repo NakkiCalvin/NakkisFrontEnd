@@ -1,4 +1,5 @@
 import serverCall, { getPaypalToken } from '../../../modules/serverCall';
+import Auth from '../../../modules/Auth';
 
 export const getCheckoutUrl = cartId => dispatch => {
   dispatch({
@@ -6,13 +7,14 @@ export const getCheckoutUrl = cartId => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: `/checkout/${cartId}`,
+    url: `api/products/checkout/${cartId}`,
   })
     .then(res => {
       dispatch({
         type: GET_CHECKOUT_SUCCESS,
         payload: res,
       });
+      Auth.setOrderId(res.data.orderId);
       return res;
     })
     .catch(error => {
@@ -24,7 +26,7 @@ export const getCheckoutUrl = cartId => dispatch => {
     });
 };
 
-export const getPayment = (paymentId, PayerID) => dispatch => {
+export const getPayment = orderId => dispatch => {
   dispatch({
     type: GET_PAYMENT_BEGIN,
   });
@@ -32,7 +34,7 @@ export const getPayment = (paymentId, PayerID) => dispatch => {
     .then(response => {
       return serverCall({
         method: 'GET',
-        url: `/payment/success?paymentId=${paymentId}&PayerID=${PayerID}`,
+        url: `api/products/payment/success?orderId=${orderId}`,
         headers: { Authorization: `Bearer ${response.data.access_token}` },
       })
         .then(res => {

@@ -10,6 +10,7 @@ import {
 const initialState = {
   loading: false,
   approval_url: null,
+  orderId: null,
   payment: null,
   error: null,
 };
@@ -25,7 +26,8 @@ export default (state = initialState, action) => {
     case GET_CHECKOUT_SUCCESS:
       return {
         loading: false,
-        approval_url: action.payload.data,
+        approval_url: action.payload.data.approval_url,
+        orderId: action.payload.data.orderId,
       };
     case GET_CHECKOUT_FAIL:
       return {

@@ -4,6 +4,7 @@ import jumpTo from '../../../modules/Navigation';
 import Header from '../../../components/header/headerContainer';
 import checkMark from '../../../assets/images/checkmark.svg';
 import styles from './stylesheet/checkoutSuccess.module.sass';
+import Auth from '../../../modules/Auth';
 
 export default class CheckoutSuccess extends Component {
   constructor(props) {
@@ -12,13 +13,17 @@ export default class CheckoutSuccess extends Component {
 
   componentDidMount() {
     const UrlQuery = this.props.location.search;
+    const orderId = Auth.getOrderId();
+    console.log('orderId', orderId);
     const queryPair = mapSearchURL(UrlQuery);
-    if (queryPair.has('paymentId') && queryPair.has('PayerID')) {
-      this.props.getPayment(
-        queryPair.get('paymentId'),
-        queryPair.get('PayerID')
-      );
-    }
+    // if (queryPair.has('paymentId') && queryPair.has('PayerID')) {
+    // if (queryPair.has('orderId')) {
+    this.props.getPayment(
+      // queryPair.get('paymentId'),
+      // queryPair.get('PayerID')
+      orderId
+    );
+    // }
   }
 
   render() {
@@ -44,13 +49,11 @@ export default class CheckoutSuccess extends Component {
                   <div className={styles.title}>
                     Billing & Shipping information:
                   </div>
-                  {Object.keys(payment.payer.payer_info.shipping_address).map(
-                    p => (
-                      <div key={p}>
-                        {p}: {payment.payer.payer_info.shipping_address[p]}
-                      </div>
-                    )
-                  )}
+                  {Object.keys(payment.shippingDetails).map(p => (
+                    <div key={p}>
+                      {p}: {payment.shippingDetails[p]}
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className={styles.btn}>

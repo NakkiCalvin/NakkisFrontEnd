@@ -103,7 +103,7 @@ export const applyFilters = filter_string => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: `/products?${filter_string}`,
+    url: `api/products?${filter_string}`,
   })
     .then(res => {
       dispatch({
