@@ -23,6 +23,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('this.props.token', this.props.token);
     return (
       <div>
         <Router ref={registerNav}>
@@ -35,7 +36,7 @@ class App extends Component {
               component={ProductOverview}
             />
             ,
-            {this.props.token && [
+            {Object.keys(this.props.token).length > 0 && [
               <Route
                 key="ShoppingBagContainer"
                 path="/bag"

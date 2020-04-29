@@ -38,6 +38,17 @@ export default class Filter extends Component {
             [category]: [tagName]
           }
         }
+        if (category === 'department') {
+          return {
+            [category]: [tagName]
+          }
+        }
+        if (category === 'price') {
+          return {
+            [category]: [tagName]
+          }
+        }
+
         return {
           [category]: [...prevState[category] || [], tagName]
         }

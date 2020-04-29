@@ -5,6 +5,7 @@ import Auth from '../../../modules/Auth';
 import jumpTo from '../../../modules/Navigation';
 
 export default function UserHeader({ user_token, logoutUser }) {
+  console.log('User Header userToken', user_token);
   return (
     <div className={styles.outbox}>
       <div className={styles.tag} onClick={() => jumpTo('/bag')}>

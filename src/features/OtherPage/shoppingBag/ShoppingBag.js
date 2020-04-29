@@ -17,8 +17,8 @@ export default function ShoppingBag(props) {
           <div className={styles.table}>
             <Table
               items={items || {}}
-              handleClick={(pid, increase, decrease) =>
-                postCart(pid, increase, decrease)
+              handleClick={(pid, size, increase, decrease) =>
+                postCart(pid, size, increase, decrease)
               }
             />
           </div>

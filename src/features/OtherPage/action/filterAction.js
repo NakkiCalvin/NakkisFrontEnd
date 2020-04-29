@@ -6,7 +6,7 @@ export const filter = text => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: `/filter?query=${text}`,
+    url: `api/categories/filter?query=${text}`,
   })
     .then(res => {
       dispatch({

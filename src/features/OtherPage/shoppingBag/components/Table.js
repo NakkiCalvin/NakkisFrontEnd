@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import styles from '../stylesheets/table.module.sass';
 
 export default function BagTable({ items, handleClick }) {
+  console.log('ITEMS', items);
   return (
     <div className={styles.outbox}>
       <Table striped bordered hover>
@@ -40,7 +41,14 @@ export default function BagTable({ items, handleClick }) {
                   <Button
                     variant="outline-secondary"
                     className={styles.btn}
-                    onClick={() => handleClick(items[id].item.id, true, false)}
+                    onClick={() =>
+                      handleClick(
+                        items[id].item.id,
+                        items[id].item.size,
+                        true,
+                        false
+                      )
+                    }
                   >
                     +
                   </Button>
@@ -48,7 +56,14 @@ export default function BagTable({ items, handleClick }) {
                   <Button
                     variant="outline-secondary"
                     className={styles.btn}
-                    onClick={() => handleClick(items[id].item.id, false, true)}
+                    onClick={() =>
+                      handleClick(
+                        items[id].item.id,
+                        items[id].item.size,
+                        false,
+                        true
+                      )
+                    }
                   >
                     -
                   </Button>

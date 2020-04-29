@@ -42,7 +42,7 @@ export default class Dashboard extends Component {
                 >
                   <Product
                     title={p.title}
-                    price={`$${p.price} CAD`}
+                    price={`$${p.price} USD`}
                     color={p.color}
                     image={p.imagePath}
                   />

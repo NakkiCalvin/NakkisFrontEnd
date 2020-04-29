@@ -29,7 +29,7 @@ export default function Variants({
         <div className={styles.size_title}>SIZES:</div>
         <div className={styles.size_name}>
           <Sizes
-            sizes={size.split(',')}
+            sizes={size}
             selectedSize={selectedSize}
             clickSize={clickSize}
           />

@@ -5,7 +5,7 @@ import styles from '../stylesheets/product.module.sass';
 export default function Product({ title, color, price, image }) {
   return (
     <Card
-      border="primary"
+      border="light"
       className={`${styles.card} p-2`}
       style={{ height: '100%' }}
     >

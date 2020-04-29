@@ -52,7 +52,6 @@ export default class Header extends Component {
       getAllProducts,
       logoutUser,
     } = this.props;
-    console.log('user_token', user_token);
     let visibility = 'hide';
     if (this.state.isToggle) {
       visibility = 'show';

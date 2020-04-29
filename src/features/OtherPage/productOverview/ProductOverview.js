@@ -28,7 +28,7 @@ export default class ProductOverview extends Component {
   handleClick = variant => {
     this.setState({
       color: variant.color,
-      size: variant.size,
+      size: variant.variantSizes,
       pic: variant.imagePath,
       selectedSize: '',
       id: variant.id,
@@ -44,7 +44,9 @@ export default class ProductOverview extends Component {
   addToBag = () => {
     this.props
       .postCart(
-        this.state.id || this.props.location.pathname.split('/').slice(-1)[0]
+        this.state.id ||
+          Number(this.props.location.pathname.split('/').slice(-1)[0]),
+        this.state.selectedSize.toString()
       )
       .then(res => {
         jumpTo('/bag');
@@ -52,6 +54,7 @@ export default class ProductOverview extends Component {
   };
 
   render() {
+    console.log('this.state.size', this.state);
     return (
       <div className={styles.outbox}>
         <Header />
@@ -74,7 +77,7 @@ export default class ProductOverview extends Component {
                     {this.props.product.description}
                   </div>
                   <div className={styles.price}>
-                    ${this.props.product.price} CAD
+                    ${this.props.product.price} USD
                   </div>
                   {/* dotted border */}
                   <div className={styles.border}></div>
@@ -82,7 +85,10 @@ export default class ProductOverview extends Component {
                   <div className={styles.variants}>
                     <Variants
                       color={this.state.color || this.props.product.color}
-                      size={this.state.size || this.props.product.size}
+                      size={
+                        this.state.size ||
+                        (this.props.product && this.props.product.variantSizes)
+                      }
                       selectedSize={this.state.selectedSize}
                       variants={mergeProductAndVariants(
                         this.props.product,

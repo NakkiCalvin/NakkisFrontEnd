@@ -9,7 +9,6 @@ export const getAllProducts = () => dispatch => {
     url: 'api/products',
   })
     .then(res => {
-      console.log('SUCCESS PRODUCTS', res);
       dispatch({
         type: GET_ALL_PRODUCTS_SUCCESS,
         payload: res,
@@ -79,7 +78,7 @@ export const search = text => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: `/search?query=${text}`,
+    url: `api/products/search?query=${text}`,
   })
     .then(res => {
       dispatch({

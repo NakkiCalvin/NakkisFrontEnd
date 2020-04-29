@@ -35,7 +35,7 @@ export const getCartByUserId = () => dispatch => {
     });
 };
 
-export const postCart = (productId, increase, decrease) => dispatch => {
+export const postCart = (productId, size, increase, decrease) => dispatch => {
   const userId = Auth.getUserId();
   dispatch({
     type: POST_CART_BEGIN,
@@ -45,6 +45,7 @@ export const postCart = (productId, increase, decrease) => dispatch => {
     url: `api/account/${userId}/cart`,
     data: {
       userId,
+      size,
       productId,
       increase,
       decrease,

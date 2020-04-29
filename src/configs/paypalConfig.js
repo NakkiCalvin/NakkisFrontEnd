@@ -1,5 +1,3 @@
-// Paypal sandbox api (https://developer.paypal.com/docs/api/overview/)
-// replace empty string with your 'Client ID' and 'Secret'
 export default {
   username:
     'AR9bAQYaLIrC4_2DH_UC3DOb1i3Vo08RPG89hq8FvxhBq9e37_UlEd3uVffMoqe9Aa6rT-ceCI3ukIC4',

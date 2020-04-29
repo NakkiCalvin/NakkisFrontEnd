@@ -6,8 +6,10 @@ import {
   INSERT_TOKEN_FAIL,
 } from '../../features/OtherPage/action/tokenAction';
 
+const userToken = localStorage.getItem('auth');
+
 const initialState = {
-  user_token: {},
+  user_token: userToken ? JSON.parse(userToken) : {}, // ТУТ ПОМЕНЯЛ С {} на null
   token_loading: false,
   error: {},
   insert_token_error: false,
