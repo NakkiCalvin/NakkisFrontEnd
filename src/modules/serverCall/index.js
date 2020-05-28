@@ -4,8 +4,9 @@ import Auth from '../Auth';
 import jumpTo from '../Navigation';
 import paypalConfig from '../../configs/paypalConfig';
 
-// const URL = 'https://zack-ecommerce-nodejs.herokuapp.com';
-const URL = 'https://localhost:44326';
+// const URL = 'https://localhost:44326';
+// const URL = 'https://api20200526110933.azurewebsites.net';
+const URL = '/';
 
 const serverCall = config => {
   // header authorization

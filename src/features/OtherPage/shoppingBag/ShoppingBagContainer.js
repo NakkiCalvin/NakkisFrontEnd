@@ -7,8 +7,8 @@ const mapStoreToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   getCartByUserId: dispatch(getCartByUserId()),
-  postCart: (pid, size, increase, decrease) =>
-    dispatch(postCart(pid, size, increase, decrease)),
+  postCart: (pid, size, variantId, increase, decrease) =>
+    dispatch(postCart(pid, size, variantId, increase, decrease)),
 });
 
 export default connect(mapStoreToProps, mapDispatchToProps)(ShoppingBag);

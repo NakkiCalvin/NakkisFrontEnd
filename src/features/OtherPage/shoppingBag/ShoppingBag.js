@@ -17,15 +17,19 @@ export default function ShoppingBag(props) {
           <div className={styles.table}>
             <Table
               items={items || {}}
-              handleClick={(pid, size, increase, decrease) =>
-                postCart(pid, size, increase, decrease)
+              handleClick={(pid, size, variantId, increase, decrease) =>
+                postCart(pid, size, variantId, increase, decrease)
               }
             />
           </div>
           <div className={styles.process_box}>
             <div className={styles.total}>Total: ${totalPrice}</div>
             <div className="my-3">
-              <Button onClick={() => jumpTo('/checkout')} variant="primary">
+              <Button
+                disabled={totalPrice === 0}
+                onClick={() => jumpTo('/checkout')}
+                variant="primary"
+              >
                 Checkout
               </Button>
             </div>

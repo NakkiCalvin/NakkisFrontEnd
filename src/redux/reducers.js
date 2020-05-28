@@ -5,6 +5,7 @@ import token from './auth/tokenReducer';
 import signin from './auth/signinReducer';
 import department from './auth/departmentReducer';
 import product from './auth/productReducer';
+import order from './auth/orderReducer';
 import variant from './auth/variantsReducer';
 import cart from './auth/cartReducer';
 import checkout from './auth/checkoutReducer';
@@ -16,6 +17,7 @@ export default combineReducers({
   signin,
   department,
   product,
+  order,
   variant,
   cart,
   checkout,

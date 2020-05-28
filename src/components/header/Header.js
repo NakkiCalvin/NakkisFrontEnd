@@ -133,18 +133,27 @@ export default class Header extends Component {
                   <div className={styles.side_title}>USER</div>
                   {user_token && Object.keys(user_token).length > 0 ? (
                     <div>
+                      <div className={styles.side_content}>
+                        {`${user_token.user_name}`}
+                      </div>
+                      {user_token.roles[0] === 'Admin' ? (
+                        <div
+                          className={styles.side_content}
+                          onClick={() => jumpTo('/admin_page')}
+                        >
+                          Admin Page
+                        </div>
+                      ) : null}
                       <div
                         className={styles.side_content}
-                        // onClick={() => jumpTo('/login')}
+                        onClick={() => jumpTo('/history_page')}
                       >
-                        {`${user_token.user_name}`}
+                        History Orders
                       </div>
                       <div
                         className={styles.side_content}
                         onClick={() => {
                           logoutUser();
-                          // Auth.logout();
-                          // go('/dashboard');
                         }}
                       >
                         Logout

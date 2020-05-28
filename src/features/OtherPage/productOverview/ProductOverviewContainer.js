@@ -7,6 +7,8 @@ import { postCart } from '../action/cartAction';
 const mapStoreToProps = state => ({
   product: state.product.product,
   variants: state.variant.variants,
+  loadingProduct: state.product.loading,
+  loadingVariants: state.variant.loading,
 });
 const mapDispatchToProps = {
   getProduct,

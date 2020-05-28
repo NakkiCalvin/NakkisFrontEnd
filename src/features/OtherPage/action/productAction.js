@@ -54,7 +54,7 @@ export const getProductsByCategory = c => dispatch => {
   });
   return serverCall({
     method: 'GET',
-    url: `api/products?category=${c}`,
+    url: `api/products?category=${c.category}&department=${c.department}`,
   })
     .then(res => {
       dispatch({

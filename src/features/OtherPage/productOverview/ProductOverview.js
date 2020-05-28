@@ -5,6 +5,7 @@ import Header from '../../../components/header/headerContainer';
 import Variants from './components/Variants';
 import mergeProductAndVariants from './utils/mergeProductAndVariants';
 import jumpTo from '../../../modules/Navigation';
+import LoadingAnimation from '../../../components/loadingAnimation';
 
 export default class ProductOverview extends Component {
   constructor(props) {
@@ -14,7 +15,10 @@ export default class ProductOverview extends Component {
       size: '',
       pic: '',
       selectedSize: '',
+      variantId: '',
+      quantitySizes: '',
       id: '',
+      variantModel: '',
     };
   }
 
@@ -26,18 +30,23 @@ export default class ProductOverview extends Component {
   }
 
   handleClick = variant => {
+    console.log('variant SELECT', variant);
     this.setState({
       color: variant.color,
       size: variant.variantSizes,
       pic: variant.imagePath,
-      selectedSize: '',
-      id: variant.id,
+      selectedSize: variant.variantSizes[0],
+      variantId: variant.variantId,
+      quantitySizes: variant.quantitySizes[variant.variantSizes[0]],
+      variantModel: variant,
     });
   };
 
   clickSize = s => {
+    const { variantModel } = this.state;
     this.setState({
       selectedSize: s,
+      quantitySizes: variantModel.quantitySizes[s],
     });
   };
 
@@ -46,7 +55,27 @@ export default class ProductOverview extends Component {
       .postCart(
         this.state.id ||
           Number(this.props.location.pathname.split('/').slice(-1)[0]),
-        this.state.selectedSize.toString()
+        this.state.selectedSize.toString(),
+        this.state.variantId
+      )
+      .then(res => {
+        alert('successfuly added');
+      });
+  };
+
+  buyNow = () => {
+    this.props
+      .postCart(
+        this.state.id ||
+          Number(this.props.location.pathname.split('/').slice(-1)[0]),
+        // (this.state.selectedSize.toString() === '' &&
+        //   this.props.product.variantId === this.state.variantId) ||
+        //   !this.props.variants
+        //   ? this.props.product.variantSizes[0]
+        //   : this.props.variants.find(x => x.variantId === this.state.variantId)
+        //       .variantSizes[0],
+        this.state.selectedSize.toString(),
+        this.state.variantId
       )
       .then(res => {
         jumpTo('/bag');
@@ -54,10 +83,18 @@ export default class ProductOverview extends Component {
   };
 
   render() {
-    console.log('this.state.size', this.state);
+    console.log(
+      'this.props.product.quantitySizes[this.state.selectedSize]',
+      this.props.product &&
+        this.props.product.quantitySizes[this.state.selectedSize],
+      this.state
+    );
     return (
       <div className={styles.outbox}>
         <Header />
+        {this.props.loadingVariants && this.props.loadingProduct && (
+          <LoadingAnimation />
+        )}
         {this.props.product && (
           <div className={styles.content_box}>
             <div className={styles.content}>
@@ -89,6 +126,7 @@ export default class ProductOverview extends Component {
                         this.state.size ||
                         (this.props.product && this.props.product.variantSizes)
                       }
+                      selectedItem={this.state.variantId}
                       selectedSize={this.state.selectedSize}
                       variants={mergeProductAndVariants(
                         this.props.product,
@@ -100,13 +138,29 @@ export default class ProductOverview extends Component {
                   </div>
                   <div className={styles.btns}>
                     <Button
+                      disabled={
+                        !(
+                          this.state.quantitySizes &&
+                          this.state.quantitySizes !== '0'
+                        )
+                      }
                       className={styles.btn}
                       onClick={this.addToBag}
                       variant="outline-primary"
                     >
                       Add to Bag
                     </Button>
-                    <Button className={styles.btn} variant="outline-danger">
+                    <Button
+                      className={styles.btn}
+                      disabled={
+                        !(
+                          this.state.quantitySizes &&
+                          this.state.quantitySizes !== '0'
+                        )
+                      }
+                      onClick={this.buyNow}
+                      variant="outline-danger"
+                    >
                       Buy Now
                     </Button>
                   </div>

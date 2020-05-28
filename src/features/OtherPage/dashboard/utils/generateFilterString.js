@@ -10,6 +10,7 @@ export default (state) => {
   let order = ''
   let department = ''
   let range = ''
+  let size = ''
   for (let name in state) {
     // order filter
     if (name === 'order') {
@@ -23,6 +24,9 @@ export default (state) => {
       if (temp.toUpperCase() === 'DESCENDING') {
         order = 'order=-price'
       }
+    }
+    if (name === 'size') {
+      size = `&size=${state[name]}`;
     }
     // department filter
     if (name === 'department') {
@@ -68,6 +72,15 @@ export default (state) => {
         }
       }
     }
+
+    if (name === 'valueBar') {
+      
+      range = `&range=${state[name].min}-${state[name].max}`;
+
+    }
+  }
+  if (size) {
+    result += size
   }
   if (range) {
     result += range

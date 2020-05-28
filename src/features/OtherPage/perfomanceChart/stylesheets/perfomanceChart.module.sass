@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+@import '../../../../modules/mediaQuery/app'
+
+  
+.outbox
+  min-width: 320px
+  min-height: 100vh
+  display: flex
+  justify-content: center
+  background: rgb(244, 244, 244)
+  font-size: 1rem
+
+.box
+  width: 100%
+  margin-top: 12vh
+  display: flex
+  justify-content: center
+  align-items: center
+
+
+.content
+  padding: 3%
+  margin: 4em
+  background: white
+  min-width: max-content 
+  justify-content: center
+  align-items: center
+
+
+.title
+  color: blue
+  font-size: 2rem
+  font-family: 'Comfortaa', cursive;
+
+
+.table
+  width: max-content
+  
+.process_box
+  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: flex-end
+
+.total
+  font-size: 20px
+  font-weight: bold
+
+.card
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  background: white;
+  .title
+    margin: 0;
+    color: black;
+    font-weight: 300;
+    margin-bottom: 10px;
+
+  .header
+    padding: 15px 30px 0px;
+    font-weight: 600;
+    font-size: 22px;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 
+      margin: 15px 0;
+      color: black;
+      letter-spacing: 1px;
+      line-height: 17px;
+      font-weight: 300;
+    
+    p 
+      color: black;
+      font-size: 12px;
+      line-height: 17px;
+      font-weight: 300;
+    
+  
+  .content 
+    padding: 10px 30px 20px 30px;
+  
+  .footer 
+    padding: 0 30px 5px;
+    background-color: transparent;
+    line-height: 30px;
+    .legend 
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      .item 
+        margin-right: 10px;
+      
+    
+    .stats 
+      color: gray;
+    
+    hr 
+      margin-top: 5px;
+      margin-bottom: 5px;
+      border-color: gray;
+    
+  
+  .form-group label,
+  fieldset label 
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 300;
+    &.control-label 
+      color: #25265F;
+      text-transform: uppercase;
+    &.error 
+      text-transform: none;
+      color: #FB404B;
+      margin-top: 5px;
+
+@media screen and (max-width: $mobileL)
+  .tableCustom
+    width: 300px
+
+
+// @include media-breakpoint-down(md) 
+//   .box
+//     max-width: 70%
+// @include media-breakpoint-down(sm) 
+//   .box
+//     max-width: 90%
+//   .title
+//     font-size: 1.5rem
+  

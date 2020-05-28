@@ -14,13 +14,28 @@ export default function UserHeader({ user_token, logoutUser }) {
       {user_token && Object.keys(user_token).length > 0 ? (
         <div className={styles.loggout}>
           <NavDropdown title={`hello, ${user_token.user_name}`}>
+            {user_token.roles[0] === 'Admin' ? (
+              <NavDropdown.Item
+                onClick={() => {
+                  jumpTo('/admin_page');
+                }}
+              >
+                Admin Panel
+              </NavDropdown.Item>
+            ) : null}
+            <NavDropdown.Item
+              onClick={() => {
+                jumpTo('/history_page');
+              }}
+            >
+              Order History
+            </NavDropdown.Item>
             <NavDropdown.Item
               onClick={() => {
                 logoutUser();
-                // Auth.logout();
               }}
             >
-              logout
+              Logout
             </NavDropdown.Item>
           </NavDropdown>
         </div>

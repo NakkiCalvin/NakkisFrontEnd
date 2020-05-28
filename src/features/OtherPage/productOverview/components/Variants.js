@@ -9,6 +9,7 @@ export default function Variants({
   selectedSize,
   handleClick,
   clickSize,
+  selectedItem,
 }) {
   return (
     <div>
@@ -18,6 +19,7 @@ export default function Variants({
         {variants &&
           variants.map(v => (
             <img
+              style={{ cursor: 'pointer' }}
               onClick={() => handleClick(v)}
               key={v.color}
               src={v.imagePath}
@@ -29,6 +31,7 @@ export default function Variants({
         <div className={styles.size_title}>SIZES:</div>
         <div className={styles.size_name}>
           <Sizes
+            selectedItem={selectedItem}
             sizes={size}
             selectedSize={selectedSize}
             clickSize={clickSize}

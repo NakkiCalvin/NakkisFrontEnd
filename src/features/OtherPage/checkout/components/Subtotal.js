@@ -1,6 +1,6 @@
-import React from 'react'
-import styles from '../stylesheets/subtotal.module.sass'
-import calcPrice from '../utils/calcPrice'
+import React from 'react';
+import styles from '../stylesheets/subtotal.module.sass';
+import calcPrice from '../utils/calcPrice';
 
 export default function Subtotal({ subtotal }) {
   return (
@@ -31,7 +31,7 @@ export default function Subtotal({ subtotal }) {
           </div>
         </div>
       </div>
-      <div className={styles.row + ' ' + styles.total}>
+      <div className={`${styles.row  } ${  styles.total}`}>
         <div >
           Total
        </div>
@@ -40,5 +40,5 @@ export default function Subtotal({ subtotal }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

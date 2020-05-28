@@ -16,6 +16,8 @@ import ShoppingBagContainer from './features/OtherPage/shoppingBag/ShoppingBagCo
 import CheckoutContainer from './features/OtherPage/checkout/checkoutContainer';
 import CheckoutSuccessContainer from './features/OtherPage/checkoutSuccess/CheckoutSuccessContainer';
 import CheckoutCancel from './features/OtherPage/checkoutCancel/CheckoutCancel';
+import ChartContainer from './features/OtherPage/perfomanceChart/ChartContainer';
+import OrdersHistoryContainer from './features/OtherPage/ordersHistory/OrdersHistoryContainer';
 
 class App extends Component {
   componentDidMount() {
@@ -23,7 +25,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('this.props.token', this.props.token);
     return (
       <div>
         <Router ref={registerNav}>
@@ -36,6 +37,14 @@ class App extends Component {
               component={ProductOverview}
             />
             ,
+            {Object.keys(this.props.token).length > 0 &&
+              this.props.token.roles.find(x => x === 'Admin') && (
+                <Route
+                  key="ChartContainer"
+                  path="/admin_page"
+                  component={ChartContainer}
+                />
+              )}
             {Object.keys(this.props.token).length > 0 && [
               <Route
                 key="ShoppingBagContainer"
@@ -56,6 +65,11 @@ class App extends Component {
                 key="cancel"
                 path="/cancel_page"
                 component={CheckoutCancel}
+              />,
+              <Route
+                key="OrdersHistoryContainer"
+                path="/history_page"
+                component={OrdersHistoryContainer}
               />,
             ]}
             <Route

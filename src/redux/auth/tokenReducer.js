@@ -9,7 +9,7 @@ import {
 const userToken = localStorage.getItem('auth');
 
 const initialState = {
-  user_token: userToken ? JSON.parse(userToken) : {}, // ТУТ ПОМЕНЯЛ С {} на null
+  user_token: userToken ? JSON.parse(userToken) : {},
   token_loading: false,
   error: {},
   insert_token_error: false,

@@ -74,8 +74,14 @@ export default class LoginSignin extends Component {
           // console.log('loginsignin error')
           // console.log(error.response)
           const { errors } = error.response.data;
-          const reson = errors.Password ? errors.Password.join() : null;
-          alert(reson);
+          let reason = null;
+          if (errors.Password) {
+            reason = errors.Password.join();
+          }
+          if (errors.Email) {
+            reason = `${reason}\n${errors.Email.join()}`;
+          }
+          alert(reason);
           return error;
         });
     }
@@ -87,7 +93,8 @@ export default class LoginSignin extends Component {
           jumpTo('/login');
         })
         .catch(error => {
-          alert(error.response.data.error.message);
+          // alert(error.response.data.error.message);
+          alert(error.response.data);
           return error;
         });
     }

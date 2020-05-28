@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../stylesheets/filter_md.module.sass';
+import InputRange from 'react-input-range';
 import Selection from './Selection';
 import SubSelection from './SubSelection';
 
@@ -22,7 +23,7 @@ export default class Filter_md extends Component {
   };
 
   render() {
-    const { onChange, clear, selected_name, configs } = this.props;
+    const { onChange, clear, selected_name, configs, valueBarState, valueBarHandleChange, applyFilter } = this.props;
     return (
       <div className={styles.outbox}>
         <div className={styles.panels}>
@@ -98,7 +99,7 @@ export default class Filter_md extends Component {
                 </div>
               </div>
               {/* price */}
-              <div className={styles.selection}>
+              {/* <div className={styles.selection}>
                 <Selection
                   title="PRICE"
                   selected={
@@ -115,9 +116,38 @@ export default class Filter_md extends Component {
                     content={configs.price || []}
                   />
                 </div>
+              </div> */}
+              {/* size */}
+              <div className={styles.selection}>
+                <Selection
+                  title="SIZE"
+                  selected={
+                    selected_name.size && selected_name.size.length > 0
+                  }
+                  onChange={() => {}}
+                />
+                <div className={styles.sub_selection}>
+                  <SubSelection
+                    key="size"
+                    category="size"
+                    selected_arr={selected_name.size || []}
+                    onClick={onChange}
+                    content={configs.size || []}
+                  />
+                </div>
               </div>
             </div>
           </div>
+          <div style={{ width: '90%', margin: '0px 0px 17px 16px' }}>
+          <InputRange
+                formatLabel={value => `${value} $`}
+                maxValue={999}
+                minValue={0}
+                value={valueBarState}
+                onChangeComplete={applyFilter} 
+                onChange={valueBarHandleChange} 
+                />
+                </div>
         </div>
       </div>
     );
